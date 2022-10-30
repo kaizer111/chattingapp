@@ -1,4 +1,5 @@
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/searchBar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,7 +31,11 @@ class HomePage extends StatelessWidget {
                       )
                     ],
                   ),
-
+                  SizedBox(
+                    height: displayHeight(context)*0.03,
+                  ),
+                  SearchBar(
+                  ),
                 ],
               ),
             ),
