@@ -1,3 +1,4 @@
+import 'package:chattingapp/Constants/device_size.dart';
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
@@ -6,11 +7,11 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
-      width: 350,
+      //height: 60,
+      width: displayWidth(context)*0.9,
       child: TextFormField(
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.zero,   //NOTE: for putting hint text in center
+            //contentPadding: EdgeInsets.zero,
             prefixIcon: Icon(Icons.search,
               size: 35,
             ),

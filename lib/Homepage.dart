@@ -1,6 +1,8 @@
 import 'package:chattingapp/Constants/device_size.dart';
-import 'package:chattingapp/searchBar.dart';
+import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:flutter/material.dart';
+
+import 'Screens/Status.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,10 +21,12 @@ class HomePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Whatsagram',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'Whatsagram',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
                       CircleAvatar(
@@ -32,33 +36,40 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: displayHeight(context)*0.03,
+                    height: displayHeight(context) * 0.03,
                   ),
-                  SearchBar(
-                  ),
+                  SearchBar(),
+
+                 // SizedBox(
+                 //   height: displayHeight(context)*0.03,
+                 // ),
+
+                 SizedBox(
+                   height: displayHeight(context)*0.15,
+                     child: Expanded(child: Status())),
+
                 ],
               ),
             ),
-
-
             Positioned(
-              bottom: 0,
+                bottom: 0,
                 child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              elevation: 20,
-              child: Container(
-                height: displayHeight(context) * 0.68,
-                width: displayWidth(context),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30))),
-              ),
-            ))
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
+                  elevation: 20,
+                  child: Container(
+                    height: displayHeight(context) * 0.60,
+                    width: displayWidth(context),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30))),
+
+                  ),
+                )),
           ],
         ),
       ),
