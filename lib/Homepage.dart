@@ -1,4 +1,5 @@
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,10 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30))),
-
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Chatscreen()
+                    ),
                   ),
                 )),
           ],
