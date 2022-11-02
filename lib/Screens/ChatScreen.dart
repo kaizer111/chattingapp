@@ -1,370 +1,51 @@
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/Screens/chats/chats.dart';
+import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:flutter/material.dart';
 
-class Chatscreen extends StatelessWidget {
+class Chatscreen extends StatefulWidget {
   const Chatscreen({Key? key}) : super(key: key);
 
   @override
+  State<Chatscreen> createState() => _ChatscreenState();
+}
+
+class _ChatscreenState extends State<Chatscreen> {
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Container(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('Chats',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18
+          DefaultTabController(
+            length: 3,
+            initialIndex: 0,
+             child: Column(
+              children: [
+                  TabBar(
+                    labelColor: Colors.blue[300],
+                    unselectedLabelColor: Colors.black,
+                    tabs: const [
+                      Tab(text: 'Chats'),
+                      Tab(text: 'Groups'),
+                      Tab(text: 'Calls'),
+                    ],
+                  ),
+              Container(
+                height: 300, //height of TabBarView
+                decoration: const BoxDecoration(
+                  border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
                 ),
-              ),
-              Text('Groups',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18
-                ),
-              ),
-              Text('Calls',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18
-                ),
-              ),
-            ],
-          ),
-          Divider(thickness: 4,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Parkshin.jpg'),
-                radius: 25,
-              ),
-              SizedBox(
-                width: displayWidth(context)*0.04,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Park Shin Hye',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
+                child: const TabBarView(children: <Widget> [
+                   chats(),
+                   groups(),
+                  Center(
+                    child: Text('calls', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                   ),
-
-                  SizedBox(
-                  height: displayHeight(context)*0.01,
-                  ),
-
-                  Row(
-                    children: [
-                      Text('Anneyonghaseyo!!!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: displayWidth(context)*0.23,
-                      ),
-
-                      Text('4:52 pm')
-                    ],
-                  ),
-                 ],
-               ),
-            ],
-          ),
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Divider(thickness: 6,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Parkshin.jpg'),
-                radius: 25,
-              ),
-              SizedBox(
-                width: displayWidth(context)*0.04,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Park Shin Hye',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: displayHeight(context)*0.01,
-                  ),
-
-                  Row(
-                    children: [
-                      Text('Anneyonghaseyo!!!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: displayWidth(context)*0.23,
-                      ),
-
-                      Text('4:52 pm')
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Divider(thickness: 6,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Parkshin.jpg'),
-                radius: 25,
-              ),
-              SizedBox(
-                width: displayWidth(context)*0.04,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Park Shin Hye',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: displayHeight(context)*0.01,
-                  ),
-
-                  Row(
-                    children: [
-                      Text('Anneyonghaseyo!!!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: displayWidth(context)*0.23,
-                      ),
-
-                      Text('4:52 pm')
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Divider(thickness: 6,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Parkshin.jpg'),
-                radius: 25,
-              ),
-              SizedBox(
-                width: displayWidth(context)*0.04,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Park Shin Hye',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: displayHeight(context)*0.01,
-                  ),
-
-                  Row(
-                    children: [
-                      Text('Anneyonghaseyo!!!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: displayWidth(context)*0.23,
-                      ),
-
-                      Text('4:52 pm')
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Divider(thickness: 6,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Parkshin.jpg'),
-                radius: 25,
-              ),
-              SizedBox(
-                width: displayWidth(context)*0.04,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Park Shin Hye',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: displayHeight(context)*0.01,
-                  ),
-
-                  Row(
-                    children: [
-                      Text('Anneyonghaseyo!!!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: displayWidth(context)*0.23,
-                      ),
-
-                      Text('4:52 pm')
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Divider(thickness: 6,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Parkshin.jpg'),
-                radius: 25,
-              ),
-              SizedBox(
-                width: displayWidth(context)*0.04,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Park Shin Hye',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: displayHeight(context)*0.01,
-                  ),
-
-                  Row(
-                    children: [
-                      Text('Anneyonghaseyo!!!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: displayWidth(context)*0.23,
-                      ),
-
-                      Text('4:52 pm')
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-          Divider(thickness: 6,),
-
-          SizedBox(
-            height: displayHeight(context)*0.015,
-          ),
-
-
+                ]
+                ),)
+              ],
+             )
+             ),
         ],
       ),
     );
