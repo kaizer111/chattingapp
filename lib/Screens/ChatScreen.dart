@@ -1,4 +1,5 @@
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:flutter/material.dart';
@@ -31,16 +32,14 @@ class _ChatscreenState extends State<Chatscreen> {
                     ],
                   ),
               Container(
-                height: 300, //height of TabBarView
+                height: displayHeight(context)*0.48, //height of TabBarView
                 decoration: const BoxDecoration(
                   border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
                 ),
                 child: const TabBarView(children: <Widget> [
                    chats(),
                    groups(),
-                  Center(
-                    child: Text('calls', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                  ),
+                   calls(),
                 ]
                 ),)
               ],

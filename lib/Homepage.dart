@@ -21,19 +21,24 @@ class HomePage extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
+                    children:  [
+                     const  Padding(
+                        padding:  EdgeInsets.all(10.0),
                         child: Text(
-                          'Whatsagram',
+                          'Quickchat',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/jimin.jpg'),
-                        radius: 25,
-                      )
+                      InkWell(
+                        onTap: () {
+                          //add a drawer
+                        },
+                        child: const CircleAvatar(
+                          backgroundImage: AssetImage('assets/images/jimin.jpg'),
+                          radius: 25,
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -55,7 +60,7 @@ class HomePage extends StatelessWidget {
             Positioned(
                 bottom: 0,
                 child: Card(
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),
@@ -63,18 +68,25 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     height: displayHeight(context) * 0.60,
                     width: displayWidth(context),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    child: const Padding(
+                      padding:  EdgeInsets.all(16.0),
                       child: Chatscreen()
                     ),
                   ),
                 )),
           ],
+        ),
+
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+          // onclick it will open more options 
+        },
         ),
       ),
     );

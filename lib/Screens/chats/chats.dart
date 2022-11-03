@@ -6,17 +6,25 @@ class chats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        ListTile(
-
-          leading: CircleAvatar(
-            child: Icon(Icons.account_box),   // instead of this icon this will be the persons profile picture
+      children:  [
+        Expanded(
+          child: ListView.builder(
+            itemCount: 10,
+        
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return const ListTile(
+              visualDensity: VisualDensity(vertical: 2.5),
+              leading: CircleAvatar(
+                child: Icon(Icons.account_box),   // instead of this icon this will be the persons profile picture
+              ),
+              title: Text('kaizer'),
+              subtitle: Text('Latest chats'),
+              trailing: Text('11:11'), // this will show the current time
+            );
+            },
           ),
-          title: Text('kaizer'),
-          subtitle: Text('Latest chats'),
-          trailing: Text('11:11'), // this will show the current time
         ),
-        Divider(),
       ],
     );
   }
