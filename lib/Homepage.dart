@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                           backgroundImage: AssetImage('assets/images/jimin.jpg'),
                           radius: 25,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
