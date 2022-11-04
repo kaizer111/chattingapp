@@ -30,21 +30,25 @@ class HomePage extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
+                      SizedBox(
+                        width: 150,
+                      ),
+                      Icon(Icons.search),
                       InkWell(
                         onTap: () {
                           //add a drawer
                         },
                         child: const CircleAvatar(
                           backgroundImage: AssetImage('assets/images/jimin.jpg'),
-                          radius: 25,
+                          radius: 20,
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: displayHeight(context) * 0.03,
+                    height: displayHeight(context) * 0.02,
                   ),
-                  SearchBar(),
+                  //SearchBar(),
 
                  // SizedBox(
                  //   height: displayHeight(context)*0.03,
@@ -66,7 +70,7 @@ class HomePage extends StatelessWidget {
                           topRight: Radius.circular(30))),
                   elevation: 20,
                   child: Container(
-                    height: displayHeight(context) * 0.60,
+                    height: displayHeight(context) * 0.68,
                     width: displayWidth(context),
                     decoration: const BoxDecoration(
                         color: Colors.white,

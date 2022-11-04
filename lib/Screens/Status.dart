@@ -15,7 +15,8 @@ class Status extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(14.0),
           child: CircleAvatar(
-            backgroundImage: AssetImage(statuslist[index].image),
+
+            backgroundImage: AssetImage(statuslist[index].image,),
             radius: 40,
           ),
         );
