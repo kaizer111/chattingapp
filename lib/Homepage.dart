@@ -3,7 +3,7 @@ import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/Status.dart';
+import 'Screens/Status/Status.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
