@@ -28,16 +28,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        endDrawer: Drawer(
+          // add drawer items
+        ),
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 145, 193, 232),
           title: const Text("Quickchat"),
-          actions: const [
-             Icon(Icons.search),
-             SizedBox(
-              width: 20,
-            ),
-             Icon(Icons.account_box_rounded)
-          ],
+          // actions:  [
+          //    const Icon(Icons.search),
+          //    const SizedBox(
+          //     width: 20,
+          //   ),
+          //    IconButton(onPressed: () {
+               
+          //    }, icon: const Icon(Icons.account_box)),
+          // ],
         ),
         backgroundColor: Colors.blue.shade50,
         body:  CustomScrollView(
