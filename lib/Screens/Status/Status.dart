@@ -18,8 +18,8 @@ class Status extends StatelessWidget {
           child: CircleAvatar(
             child: IconButton(
               onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayStatus(),));
-            }, icon: Icon(Icons.account_box)),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DisplayStatus(),));
+            }, icon: const Icon(Icons.account_box)),
             //backgroundImage: AssetImage(statuslist[index].image,),
             radius: 40,
           ),

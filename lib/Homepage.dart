@@ -1,89 +1,85 @@
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/ChatScreen.dart';
+import 'package:chattingapp/Screens/calls/calls.dart';
+import 'package:chattingapp/Screens/chats/chats.dart';
+import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/Status/Status.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
+ late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+  @override
+ 
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blue.shade50,
-        body: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
-                     const  Padding(
-                        padding:  EdgeInsets.all(10.0),
-                        child: Text(
-                          'Quickchat',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 150,
-                      ),
-                      Icon(Icons.search),
-                      InkWell(
-                        onTap: () {
-                          //add a drawer
-                        },
-                        child: const CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/jimin.jpg'),
-                          radius: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: displayHeight(context) * 0.02,
-                  ),
-                  //SearchBar(),
-
-                 // SizedBox(
-                 //   height: displayHeight(context)*0.03,
-                 // ),
-
-                 SizedBox(
-                   height: displayHeight(context)*0.15,
-                     child: Expanded(child: Status())),
-
-                ],
-              ),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 145, 193, 232),
+          title: const Text("Quickchat"),
+          actions: const [
+             Icon(Icons.search),
+             SizedBox(
+              width: 20,
             ),
-            Positioned(
-                bottom: 0,
-                child: Card(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30))),
-                  elevation: 20,
-                  child: Container(
-                    height: displayHeight(context) * 0.68,
-                    width: displayWidth(context),
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30))),
-                    child: const Padding(
-                      padding:  EdgeInsets.all(16.0),
-                      child: Chatscreen()
-                    ),
-                  ),
-                )),
+             Icon(Icons.account_box_rounded)
           ],
+        ),
+        backgroundColor: Colors.blue.shade50,
+        body:  CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              pinned: true,
+            snap: false,
+            floating: true,
+            expandedHeight: 170.0,
+            flexibleSpace:  const FlexibleSpaceBar(
+              background: Status(),
+            ),
+             bottom:  TabBar
+             (
+              labelStyle: TextStyle(),
+              controller: _tabController,
+              indicatorColor: Colors.black,
+              labelColor: Colors.black,
+              indicatorSize: TabBarIndicatorSize.label,
+              indicator: const UnderlineTabIndicator(
+              insets: EdgeInsets.only(bottom: 8),
+             ),
+              tabs: const [
+               Tab(text: 'Chats'),
+               Tab(text: 'Groups'),
+               Tab(text: 'calls'),
+            ],
+            ),
+            ),
+            SliverFillRemaining(
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
+                Center(child: chats()),
+                Center(child: groups()),
+                Center(child: calls()),
+              ],
+            ),
+          ),
+          ],
+          
         ),
 
         floatingActionButton: FloatingActionButton(
