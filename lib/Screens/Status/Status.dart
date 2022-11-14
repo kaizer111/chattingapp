@@ -1,7 +1,8 @@
 import 'package:chattingapp/Dummy_data/data.dart';
+import 'package:chattingapp/Screens/Status/display_status.dart';
 import 'package:flutter/material.dart';
 
-import '../Constants/device_size.dart';
+import '../../Constants/device_size.dart';
 
 class Status extends StatelessWidget {
   const Status({Key? key}) : super(key: key);
@@ -13,14 +14,18 @@ class Status extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.all(14.0),
+          padding: const EdgeInsets.all(10.0),
           child: CircleAvatar(
-            backgroundImage: AssetImage(statuslist[index].image),
+            child: IconButton(
+              onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DisplayStatus(),));
+            }, icon: const Icon(Icons.account_box)),
+            //backgroundImage: AssetImage(statuslist[index].image,),
             radius: 40,
           ),
         );
       },
-      itemCount: statuslist.length,
+      itemCount: 10,
     );
   }
 }

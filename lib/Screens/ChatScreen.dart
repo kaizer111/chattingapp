@@ -32,7 +32,7 @@ class _ChatscreenState extends State<Chatscreen> {
                     ],
                   ),
               Container(
-                height: displayHeight(context)*0.48, //height of TabBarView
+                height: displayHeight(context)*0.56, //height of TabBarView
                 decoration: const BoxDecoration(
                   border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
                 ),

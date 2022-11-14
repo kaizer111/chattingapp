@@ -14,6 +14,7 @@ class calls extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return  ListTile(
+                tileColor: Colors.white,
               visualDensity: const VisualDensity(vertical: 2.5),
               leading: const CircleAvatar(
                 child: Icon(Icons.account_box),   // instead of this icon this will be the persons profile picture

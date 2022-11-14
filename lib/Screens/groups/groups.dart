@@ -11,6 +11,7 @@ class groups extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) {
               return ListTile(
+                tileColor: Colors.white,
               leading: CircleAvatar(
                 child: Icon(Icons.play_circle_fill),  // instead of icon this will be an image or groups profile picture
               ),

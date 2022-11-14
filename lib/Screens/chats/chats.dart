@@ -14,6 +14,7 @@ class chats extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return const ListTile(
+                tileColor: Colors.white,
               visualDensity: VisualDensity(vertical: 2.5),
               leading: CircleAvatar(
                 child: Icon(Icons.account_box),   // instead of this icon this will be the persons profile picture
