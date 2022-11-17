@@ -19,8 +19,8 @@ class chats extends StatelessWidget {
               leading: CircleAvatar(
                 child: Icon(Icons.account_box),   // instead of this icon this will be the persons profile picture
               ),
-              title: Text('kaizer'),
-              subtitle: Text('Latest chats'),
+              title: Text('kaizer',style: TextStyle(fontFamily: "open"),),
+              subtitle: Text('Latest chats',style: TextStyle(fontFamily: "open"),),
               trailing: Text('11:11'), // this will show the current time
             );
             },
