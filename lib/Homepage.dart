@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
         ),
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 145, 193, 232),
-          title: const Text("Quickchat"),
+          title: const Text("Quickchat",style: TextStyle(fontFamily: "fira"),),
           // actions:  [
           //    const Icon(Icons.search),
           //    const SizedBox(
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             ),
              bottom:  TabBar
              (
-              labelStyle: TextStyle(),
+              labelStyle: TextStyle(fontFamily: "fira"),
               controller: _tabController,
               indicatorColor: Colors.black,
               labelColor: Colors.black,
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
               insets: EdgeInsets.only(bottom: 8),
              ),
               tabs: const [
-               Tab(text: 'Chats'),
+               Tab(text: 'Chats',),
                Tab(text: 'Groups'),
                Tab(text: 'calls'),
             ],
