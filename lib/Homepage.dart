@@ -1,5 +1,7 @@
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/ChatScreen.dart';
+import 'package:chattingapp/Screens/Help.dart';
+import 'package:chattingapp/Screens/Starred_messages.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
@@ -96,7 +98,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+                  MaterialPageRoute(builder: (context) => StarredMessage()));
             },
           )
           ),
@@ -109,7 +111,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+                  MaterialPageRoute(builder: (context) => HelpScreen()));
             },
           )
           ),
