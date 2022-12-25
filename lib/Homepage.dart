@@ -1,10 +1,11 @@
-import 'package:chattingapp/Constants/colors.dart';
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
+import 'package:chattingapp/Screens/profile.dart';
 import 'package:chattingapp/Screens/searchBar.dart';
+import 'package:chattingapp/Screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'Screens/Status/Status.dart';
@@ -65,6 +66,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   fontSize: 16
               ),
             ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Profile(),));
+            },
           )
           ),
           PopupMenuItem(child: ListTile(
@@ -76,7 +82,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchBar(),));
+                  MaterialPageRoute(builder: (context) => SettingScreen(),));
             },
           )
           ),
@@ -94,6 +100,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   fontSize: 16
               ),
             ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+            },
           )
           ),
 
@@ -103,6 +114,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   fontSize: 16
               ),
             ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+            },
           )
           ),
 
@@ -119,7 +135,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
         body:  CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.blue.shade50,
               pinned: true,
             snap: false,
             floating: true,
