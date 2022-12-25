@@ -1,3 +1,4 @@
+import 'package:chattingapp/Constants/colors.dart';
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
@@ -114,7 +115,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
 
           ],
         ),
-        backgroundColor: Colors.blue.shade50,
+        //backgroundColor: Colors.blue.shade50,
         body:  CustomScrollView(
           slivers: [
             SliverAppBar(
