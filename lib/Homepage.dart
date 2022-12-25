@@ -1,9 +1,14 @@
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/ChatScreen.dart';
+import 'package:chattingapp/Screens/Help.dart';
+import 'package:chattingapp/Screens/Starred_messages.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
+import 'package:chattingapp/Screens/newGroups.dart';
+import 'package:chattingapp/Screens/profile.dart';
 import 'package:chattingapp/Screens/searchBar.dart';
+import 'package:chattingapp/Screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'Screens/Status/Status.dart';
@@ -42,27 +47,103 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        endDrawer: Drawer(
-          // add drawer items
-        ),
+
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 145, 193, 232),
           title: const Text("Quickchat",style: TextStyle(fontFamily: "fira"),),
-          // actions:  [
-          //    const Icon(Icons.search),
-          //    const SizedBox(
-          //     width: 20,
-          //   ),
-          //    IconButton(onPressed: () {
-               
-          //    }, icon: const Icon(Icons.account_box)),
-          // ],
+          actions:  [
+
+
+    PopupMenuButton(onSelected: (value){
+            print(value);
+            },
+        color: Colors.blueGrey.shade100,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+
+      itemBuilder: (BuildContext context) {
+        return [
+
+          PopupMenuItem(child: ListTile(
+            leading: Text('Profile',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Profile(),));
+            },
+          )
+          ),
+          PopupMenuItem(child: ListTile(
+            leading: Text('New groups',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NewGroupScreen(),));
+            },
+          )
+          ),
+          PopupMenuItem(child: ListTile(
+            leading: Text('Starred messages',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => StarredMessage()));
+            },
+          )
+          ),
+          PopupMenuItem(child: ListTile(
+            leading: Text('Help',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HelpScreen()));
+            },
+          )
+          ),
+
+          PopupMenuItem(child: ListTile(
+            leading: Text('Settings',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+            },
+          )
+          ),
+
+        ];
+      }
+    )
+
+    
+
+
+          ],
         ),
-        backgroundColor: Colors.blue.shade50,
+        //backgroundColor: Colors.blue.shade50,
         body:  CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.blue.shade50,
               pinned: true,
             snap: false,
             floating: true,
