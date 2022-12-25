@@ -3,6 +3,7 @@ import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
+import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
 import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:chattingapp/Screens/settings.dart';
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+                  MaterialPageRoute(builder: (context) => NewGroupScreen(),));
             },
           )
           ),
@@ -92,6 +93,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   fontSize: 16
               ),
             ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+            },
           )
           ),
           PopupMenuItem(child: ListTile(
