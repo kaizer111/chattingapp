@@ -42,21 +42,77 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        endDrawer: Drawer(
-          // add drawer items
-        ),
+
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 145, 193, 232),
           title: const Text("Quickchat",style: TextStyle(fontFamily: "fira"),),
-          // actions:  [
-          //    const Icon(Icons.search),
-          //    const SizedBox(
-          //     width: 20,
-          //   ),
-          //    IconButton(onPressed: () {
-               
-          //    }, icon: const Icon(Icons.account_box)),
-          // ],
+          actions:  [
+
+
+    PopupMenuButton(onSelected: (value){
+            print(value);
+            },
+        color: Colors.blueGrey.shade100,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+
+      itemBuilder: (BuildContext context) {
+        return [
+
+          PopupMenuItem(child: ListTile(
+            leading: Text('Profile',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+          )
+          ),
+          PopupMenuItem(child: ListTile(
+            leading: Text('New groups',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchBar(),));
+            },
+          )
+          ),
+          PopupMenuItem(child: ListTile(
+            leading: Text('Starred messages',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+          )
+          ),
+          PopupMenuItem(child: ListTile(
+            leading: Text('Help',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+          )
+          ),
+
+          PopupMenuItem(child: ListTile(
+            leading: Text('Settings',
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+          )
+          ),
+
+        ];
+      }
+    )
+
+    
+
+
+          ],
         ),
         backgroundColor: Colors.blue.shade50,
         body:  CustomScrollView(
