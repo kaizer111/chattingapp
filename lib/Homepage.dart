@@ -11,6 +11,7 @@ import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:chattingapp/Screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'Screens/Status/Status.dart';
 
 class HomePage extends StatefulWidget {
@@ -206,6 +207,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             titleStyle:TextStyle(fontSize: 16 , color: Colors.white),
             onPress: () {
               _animationController!.reverse();
+                QrImage(
+              data: 'This QR code has an embedded image as well',
+                version: QrVersions.auto,
+                size: 320,
+                gapless: false,
+                embeddedImage: AssetImage('assets/images/qrimage.jpg'),
+                embeddedImageStyle: QrEmbeddedImageStyle(
+                size: Size(80, 80),
+                  ),
+                );
+
             },
           ),
           //Floating action menu item

@@ -1,3 +1,5 @@
+import 'package:chattingapp/Screens/authscreens/loginpage.dart';
+import 'package:chattingapp/Screens/authscreens/signuppage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Homepage.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return  MaterialApp(
-      home: HomePage(),
+      home: SignUpPage(),
       debugShowCheckedModeBanner: false,
     );
   }
