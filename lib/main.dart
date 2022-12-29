@@ -1,3 +1,4 @@
+import 'package:chattingapp/Screens/authscreens/AuthScreen.dart';
 import 'package:chattingapp/Screens/authscreens/loginpage.dart';
 import 'package:chattingapp/Screens/authscreens/signuppage.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return  MaterialApp(
-      home: SignUpPage(),
+      home: AuthScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

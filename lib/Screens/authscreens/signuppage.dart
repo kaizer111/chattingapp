@@ -1,3 +1,4 @@
+import 'package:chattingapp/Constants/device_size.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -10,27 +11,36 @@ class SignUpPage extends StatelessWidget {
            gradient: LinearGradient(begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Color(0xFF000428),
-                Color(0xFF004e92),
+                Color(0xFF36d1dc),
+                Color(0xFF5b86e5),
               ],),
         ),
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
             elevation: 0,
+            backgroundColor: Colors.transparent,
           ),
           backgroundColor: Colors.transparent,
           body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 150,
-                width: 350,
-                child: Image.asset("assets/images/chattingicon.png",fit: BoxFit.contain)),
+              // Padding(
+              //   padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              //   child: Container(
+              //     height: 130,
+              //     width: 350,
+              //     child: Image.asset("assets/images/chattingicon.png",fit: BoxFit.contain)),
+              // ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
+                child: Text("Create an Accunt",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "play"),),
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 20, 30, 10),
                 child: TextFormField(
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.account_circle,color: Colors.white,),
                     label: Text("Name",style: TextStyle(color: Colors.white),),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(35),
@@ -55,6 +65,7 @@ class SignUpPage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                 child: TextFormField(
                   decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.visibility,color: Colors.white,),
                     label: Text("Password",style: TextStyle(color: Colors.white),),
                     prefixIcon: Icon(Icons.key , color: Colors.white,),
                     border: OutlineInputBorder(
@@ -64,9 +75,11 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
+                padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                 child: TextFormField(
-                  decoration: InputDecoration(label: Text("Confirm Password",style: TextStyle(color: Colors.white),),
+                  decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.visibility,color: Colors.white,),
+                    label: Text("Confirm Password",style: TextStyle(color: Colors.white),),
                     prefixIcon: Icon(Icons.key , color: Colors.white,),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(35),
@@ -74,15 +87,46 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
               ),
-              MaterialButton(
-                elevation: 11,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                 color: Colors.greenAccent,
-                 child: Text("Signup"),
-                onPressed: () {
-                
+              Row(
+                children: [
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(30, 0, 0, 10),
+                 child: Checkbox(
+
+                  shape: CircleBorder(),
+                  value: false, 
+                  onChanged: (value) {
+                  
               },),
-              
+               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: Text("I accept al the terms and Conditions",style: TextStyle(color: Colors.white),),
+              )
+                ],
+              ),
+              Center(
+                child: SizedBox(
+                  width: displayWidth(context) * 0.83,
+                  child: MaterialButton(
+                    height: displayHeight(context) * 0.055,
+                    onPressed: () {
+                          
+                    },
+                    color: Colors.blue[100],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: const Text(
+                      "SignUp",
+                      style: TextStyle(
+                        fontSize: 15.5,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+             
             ],
           ),
         ),
