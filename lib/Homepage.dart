@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           // leading: IconButton(
           //   onPressed: () {
           //   Navigator.pushReplacementNamed(context, '/AppScreen');
@@ -116,15 +117,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
           ),
 
           PopupMenuItem(child: ListTile(
-            leading: Text('Settings',
+            leading: Text('Logout',
               style: TextStyle(
                   fontSize: 16
               ),
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+              Navigator.pushReplacementNamed(context, '/AppScreen');
             },
           )
           ),
