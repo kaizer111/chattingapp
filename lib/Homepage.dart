@@ -7,7 +7,6 @@ import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
-import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:chattingapp/Screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
@@ -135,48 +134,49 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
     ),
           ],
         ),
+        body: chats(),
         //backgroundColor: Colors.blue.shade50,
-        body:  CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: Colors.white,
-              pinned: true,
-            snap: false,
-            floating: true,
-            expandedHeight: 170.0,
-            flexibleSpace:  const FlexibleSpaceBar(
-              background: Status(),
-            ),
-             bottom:  TabBar
-             (
-              labelStyle: TextStyle(fontFamily: "fira"),
-              controller: _tabController,
-              indicatorColor: Colors.black,
-              labelColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: const UnderlineTabIndicator(
-              insets: EdgeInsets.only(bottom: 8),
-             ),
-              tabs: const [
-               Tab(text: 'Chats',),
-               Tab(text: 'Groups'),
-               Tab(text: 'calls'),
-            ],
-            ),
-            ),
-            SliverFillRemaining(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [
-                Center(child: chats()),
-                Center(child: groups()),
-                Center(child: calls()),
-              ],
-            ),
-          ),
-          ],
+        // body:  CustomScrollView(
+        //   slivers: [
+        //     SliverAppBar(
+        //       backgroundColor: Colors.white,
+        //       pinned: true,
+        //     snap: false,
+        //     floating: true,
+        //     expandedHeight: 170.0,
+        //     flexibleSpace:  const FlexibleSpaceBar(
+        //       background: Status(),
+        //     ),
+        //      bottom:  TabBar
+        //      (
+        //       labelStyle: TextStyle(fontFamily: "fira"),
+        //       controller: _tabController,
+        //       indicatorColor: Colors.black,
+        //       labelColor: Colors.black,
+        //       indicatorSize: TabBarIndicatorSize.label,
+        //       indicator: const UnderlineTabIndicator(
+        //       insets: EdgeInsets.only(bottom: 8),
+        //      ),
+        //       tabs: const [
+        //        Tab(text: 'Chats',),
+        //        Tab(text: 'Groups'),
+        //        Tab(text: 'calls'),
+        //     ],
+        //     ),
+        //     ),
+        //     SliverFillRemaining(
+        //     child: TabBarView(
+        //       controller: _tabController,
+        //       children: const [
+        //         Center(child: chats()),
+        //         Center(child: groups()),
+        //         Center(child: calls()),
+        //       ],
+        //     ),
+        //   ),
+        //   ],
           
-        ),
+        // ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton:  FloatingActionBubble(
         // Menu items

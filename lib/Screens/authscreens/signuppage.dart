@@ -16,7 +16,6 @@ class _SignUpPageState extends State<SignUpPage> {
    final Authservice auth= Authservice();
   bool Loadscreen =false;
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmpasswordController = TextEditingController();
 
@@ -125,7 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Row(
-                  children: [
+                  children: const [
                 //  Padding(
                 //    padding: const EdgeInsets.fromLTRB(30, 0, 0, 10),
                 //    child: Checkbox(
@@ -171,7 +170,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      child: Loadscreen==false ? Text(
+                      child: Loadscreen==false ? const Text(
                         "SignUp",
                         style: TextStyle(
                           fontSize: 15.5,
