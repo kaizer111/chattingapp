@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController confirmpasswordController = TextEditingController();
 
     final _formkey= GlobalKey<FormState>();
+    bool ishiddenPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 25, 30, 10),
                   child: TextFormField(
+                    obscureText: ishiddenPassword,
                     controller: passwordController,
                     validator: (val) {
                        if (val!.isEmpty) return "password cannot be empty";
@@ -85,7 +87,14 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                      // hintText: "Password",
                       label: Text("Password",style: TextStyle(color: Colors.white),),
-                      suffixIcon: Icon(Icons.visibility,color: Colors.white,),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                        setState(() {
+                          ishiddenPassword=!ishiddenPassword;
+                        });
+                      }, icon: ishiddenPassword
+                         ?Icon(Icons.visibility,color: Colors.white,)
+                         :Icon(Icons.visibility_off,color: Colors.white,)),
                       prefixIcon: Icon(Icons.key,color: Colors.white),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(35),

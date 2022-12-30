@@ -20,6 +20,8 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController confirmpasswordController = TextEditingController();
 
   final _formkey= GlobalKey<FormState>();
+  bool hiddensignuppassword = true;
+  bool hiddenconformpassword=true;
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +92,20 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                   child: TextFormField(
+                    obscureText: hiddensignuppassword,
                     controller: passwordController,
                     validator: (val) {
                       if (val!.isEmpty) return "password cannot be empty";
                       },
                     decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.visibility,color: Colors.white,),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                        setState(() {
+                          hiddensignuppassword=!hiddensignuppassword;
+                        });
+                      }, icon: hiddensignuppassword
+                      ?Icon(Icons.visibility,color: Colors.white,)
+                      :Icon(Icons.visibility_off,color: Colors.white,)),
                       label: Text("Password",style: TextStyle(color: Colors.white),),
                       prefixIcon: Icon(Icons.key , color: Colors.white,),
                       border: OutlineInputBorder(
@@ -107,6 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                   child: TextFormField(
+                    obscureText: hiddenconformpassword,
                     controller: confirmpasswordController,
                     validator: (val) {
                       if (val!.isEmpty) return "password cannot be empty";
@@ -114,7 +125,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       return "password don't match";
                         },
                     decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.visibility,color: Colors.white,),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                        setState(() {
+                          hiddenconformpassword=!hiddenconformpassword;
+                        });
+                      }, icon: hiddenconformpassword
+                      ?Icon(Icons.visibility,color: Colors.white,)
+                      :Icon(Icons.visibility_off,color: Colors.white,)),
                       label: Text("Confirm Password",style: TextStyle(color: Colors.white),),
                       prefixIcon: Icon(Icons.key , color: Colors.white,),
                       border: OutlineInputBorder(
