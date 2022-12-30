@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   
   @override
   void initState() {
-    
+     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _animationController = AnimationController(
       vsync: this,
@@ -39,8 +39,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
     final curvedAnimation = CurvedAnimation(curve: Curves.easeInOut, parent: _animationController!);
     _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
     
-    super.initState();
-    super.initState();
+   
   }
 
   @override
@@ -48,22 +47,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-
         appBar: AppBar(
+          // leading: IconButton(
+          //   onPressed: () {
+          //   Navigator.pushReplacementNamed(context, '/AppScreen');
+          // }, icon: Icon(Icons.logout)),
           backgroundColor: Color.fromARGB(255, 145, 193, 232),
           title: const Text("Quickchat",style: TextStyle(fontFamily: "fira"),),
           actions:  [
-
-
-    PopupMenuButton(onSelected: (value){
+              PopupMenuButton(onSelected: (value){
             print(value);
             },
         color: Colors.blueGrey.shade100,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-
       itemBuilder: (BuildContext context) {
         return [
-
           PopupMenuItem(child: ListTile(
             leading: Text('Profile',
               style: TextStyle(
@@ -77,7 +75,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             },
           )
           ),
-          PopupMenuItem(child: ListTile(
+          PopupMenuItem(
+            child: ListTile(
             leading: Text('New groups',
               style: TextStyle(
                   fontSize: 16
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => StarredMessage()));
             },
-          )
+          ),
           ),
           PopupMenuItem(child: ListTile(
             leading: Text('Help',
@@ -133,11 +132,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
 
         ];
       }
-    )
-
-    
-
-
+    ),
           ],
         ),
         //backgroundColor: Colors.blue.shade50,
