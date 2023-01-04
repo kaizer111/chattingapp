@@ -8,6 +8,7 @@ import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
 import 'package:chattingapp/Screens/settings.dart';
+import 'package:chattingapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -122,8 +123,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   fontSize: 16
               ),
             ),
-            onTap: () {
+            onTap: () async{
               Navigator.pop(context);
+              await setPref(false);
               Navigator.pushReplacementNamed(context, '/AppScreen');
             },
           )

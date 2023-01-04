@@ -1,5 +1,6 @@
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Homepage.dart';
+import 'package:chattingapp/main.dart';
 import 'package:chattingapp/services/firebase/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -68,9 +69,18 @@ class _LoginPageState extends State<LoginPage> {
                         },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
                       label: Text("Email",style: TextStyle(color: Colors.white),),
                       prefixIcon: Icon(Icons.email , color: Colors.white,),
                       border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(35),
                       ),
                     ),
@@ -85,6 +95,14 @@ class _LoginPageState extends State<LoginPage> {
                        if (val!.isEmpty) return "password cannot be empty";
                         },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
                      // hintText: "Password",
                       label: Text("Password",style: TextStyle(color: Colors.white),),
                       suffixIcon: IconButton(
@@ -124,6 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                                  
                               }
                               else {
+                                await setPref(true);
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
                                 //  Navigator.pushReplacementNamed(context, '/HomePage');
                               }

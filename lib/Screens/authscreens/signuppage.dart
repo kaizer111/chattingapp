@@ -1,5 +1,6 @@
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/authscreens/AuthScreen.dart';
+import 'package:chattingapp/main.dart';
 import 'package:chattingapp/services/firebase/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -64,6 +65,14 @@ class _SignUpPageState extends State<SignUpPage> {
                      if (val!.isEmpty) return "name cannot be empty";
                       },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
                       prefixIcon: Icon(Icons.account_circle,color: Colors.white,),
                       label: Text("Name",style: TextStyle(color: Colors.white),),
                       border: OutlineInputBorder(
@@ -81,6 +90,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (val!.isEmpty) return "Email cannot be empty";
                       },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
                       label: Text("Email",style: TextStyle(color: Colors.white),),
                       prefixIcon: Icon(Icons.email , color: Colors.white,),
                       border: OutlineInputBorder(
@@ -98,6 +115,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (val!.isEmpty) return "password cannot be empty";
                       },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
                       suffixIcon: IconButton(
                         onPressed: () {
                         setState(() {
@@ -115,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                  padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
                   child: TextFormField(
                     obscureText: hiddenconformpassword,
                     controller: confirmpasswordController,
@@ -125,6 +150,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       return "password don't match";
                         },
                     decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
                       suffixIcon: IconButton(
                         onPressed: () {
                         setState(() {
@@ -176,6 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                  
                               }
                               else {
+                                await setPref(true);
                                  Navigator.pushReplacementNamed(context, '/HomePage');
                               }
                             }
