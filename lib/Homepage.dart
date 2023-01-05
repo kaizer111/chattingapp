@@ -4,6 +4,7 @@ import 'package:chattingapp/Screens/Help.dart';
 import 'package:chattingapp/Screens/Starred_messages.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
+import 'package:chattingapp/Screens/floatingbutton_Actions/Qr_Code_generator/Qr_generator.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
@@ -204,16 +205,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             titleStyle:TextStyle(fontSize: 16 , color: Colors.white),
             onPress: () {
               _animationController!.reverse();
-                QrImage(
-              data: 'This QR code has an embedded image as well',
-                version: QrVersions.auto,
-                size: 320,
-                gapless: false,
-                embeddedImage: AssetImage('assets/images/qrimage.jpg'),
-                embeddedImageStyle: QrEmbeddedImageStyle(
-                size: Size(80, 80),
-                  ),
-                );
+              Navigator.push(context, MaterialPageRoute(builder: (context) => QrGenerator(),));
 
             },
           ),
