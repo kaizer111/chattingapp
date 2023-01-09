@@ -5,6 +5,7 @@ import 'package:chattingapp/Screens/Starred_messages.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
 import 'package:chattingapp/Screens/floatingbutton_Actions/Qr_Code_generator/Qr_generator.dart';
+import 'package:chattingapp/Screens/floatingbutton_Actions/Qr_Scanner/Qr_Scanner.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
@@ -194,6 +195,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             titleStyle:TextStyle(fontSize: 16 , color: Colors.white),
             onPress: () {
               _animationController!.reverse();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => QrScanner(),));
             },
           ),
           // Floating action menu item
@@ -220,6 +222,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
         onPress: () => _animationController!.isCompleted
               ? _animationController!.reverse()
               : _animationController!.forward(),
+
         
         // Floating Action button Icon color
         iconColor: Colors.white,

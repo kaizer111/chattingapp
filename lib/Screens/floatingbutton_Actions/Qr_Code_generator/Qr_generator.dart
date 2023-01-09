@@ -1,10 +1,14 @@
+import 'package:chattingapp/model/User_model.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class QrGenerator extends StatelessWidget {
-   QrGenerator({super.key});
-  String data= "vishal";
-
+  //QrGenerator({super.key});
+  
+  final String myUserId = FirebaseAuth.instance.currentUser!.uid;
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +27,19 @@ class QrGenerator extends StatelessWidget {
           // ),
           Center(
             child: CircleAvatar(
-              child: Container(child: Image.asset("assets/images/chatting.png",fit: BoxFit.contain,)),
+              //child: Container(child: Image.asset("assets/images/chatting.png",fit: BoxFit.contain,)),
               backgroundColor: Colors.blue[200],
               radius: 45,
             )),
             const SizedBox(
               height: 15,
             ),
-            const Center(child: Text("Kakashi Hatake",style: TextStyle(fontSize: 25,fontFamily: "fira"),)),
+            const Center(child: Text( 
+              "kakashi hatake",
+              style: TextStyle(
+                fontSize: 25,
+                fontFamily: "fira",
+                ),)),
             const SizedBox(
             height: 30,
           ),
@@ -44,7 +53,7 @@ class QrGenerator extends StatelessWidget {
             ),
             child: Center(
               child: QrImage(
-                data: data,
+                data: myUserId,
                 backgroundColor: Colors.white,
                 size: 200,
                 ),
