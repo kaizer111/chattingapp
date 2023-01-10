@@ -81,7 +81,7 @@ class Profile extends StatelessWidget {
                   leading: Container(
                     child: Column(
                       children: [
-
+                
                         Row(
                           children: [
                             Icon(Icons.cake,size: 34,color: Colors.black,),
@@ -99,7 +99,7 @@ class Profile extends StatelessWidget {
                                 SizedBox(
                                   height: displayHeight(context)*0.005,
                                 ),
-
+                
                                 Text('13/10/1995',
                                   style: TextStyle(fontSize: 20),
                                 ),
@@ -107,15 +107,15 @@ class Profile extends StatelessWidget {
                             ),
                           ],
                         ),
-
-
+                
+                
                         SizedBox(
                           height: displayHeight(context)*0.005,
                         ),
-
+                
                         const Divider(),
-
-
+                
+                
                         Row(
                           children: [
                             Icon(Icons.account_circle,size: 34,color: Colors.black,),
@@ -133,7 +133,7 @@ class Profile extends StatelessWidget {
                                 SizedBox(
                                   height: displayHeight(context)*0.005,
                                 ),
-
+                
                                 Text('Male',
                                   style: TextStyle(fontSize: 20),
                                 ),
@@ -141,14 +141,14 @@ class Profile extends StatelessWidget {
                             ),
                           ],
                         ),
-
-
+                
+                
                         SizedBox(
                           height: displayHeight(context)*0.005,
                         ),
-
+                
                         const Divider(),
-
+                
                         Row(
                           children: [
                             Icon(Icons.email,size: 34,color: Colors.black,),
@@ -166,7 +166,7 @@ class Profile extends StatelessWidget {
                                 SizedBox(
                                   height: displayHeight(context)*0.005,
                                 ),
-
+                
                                 Text('mochi1310@gmail.com',
                                   style: TextStyle(fontSize: 15,
                                   ),
@@ -175,12 +175,12 @@ class Profile extends StatelessWidget {
                             ),
                           ],
                         ),
-
+                
                         SizedBox(
                           height: displayHeight(context)*0.017,
                         ),
                         const Divider(),
-
+                
                         Row(
                           children: [
                             Icon(Icons.phone,size: 34,color: Colors.black,),
@@ -198,7 +198,7 @@ class Profile extends StatelessWidget {
                                 SizedBox(
                                   height: displayHeight(context)*0.005,
                                 ),
-
+                
                                 Text('+51 129867',
                                   style: TextStyle(fontSize: 20,
                                   ),
@@ -207,13 +207,13 @@ class Profile extends StatelessWidget {
                             ),
                           ],
                         ),
-
+                
                         SizedBox(
                           height: displayHeight(context)*0.017,
                         ),
                         const Divider(),
-
-
+                
+                
                         Row(
                           children: [
                             Icon(Icons.logout_outlined,size: 34,color: Colors.black,),
