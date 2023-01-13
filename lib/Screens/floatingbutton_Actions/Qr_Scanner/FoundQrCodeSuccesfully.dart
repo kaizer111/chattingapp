@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/model/User_model.dart';
+import 'package:chattingapp/services/api/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 
@@ -118,11 +120,22 @@ class _FoundCodeScreenState extends State<FoundCodeScreen> {
                 children: [
                   Text("Scanned User", style: TextStyle(fontSize: 45,fontFamily: "fira",color: Colors.white),),
                   SizedBox(height: 20,),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(width: 2,color: Colors.white))
-                    ),
-                    child: Text(widget.value, style: TextStyle(fontSize: 16,color: Colors.white),)), //Todo : this should be user name instead of of their userid
+                  FutureBuilder(
+                    future: getUserDetails(widget.value),
+                    builder: (context,AsyncSnapshot<UserModel> snapshot) {
+                      if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+                        return Container(
+                      decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(width: 2,color: Colors.white))
+                      ),
+                      child: Text(snapshot.data!.name, style: TextStyle(fontSize: 16,color: Colors.white),));
+                      }
+                      else{
+                        return CircularProgressIndicator();
+                      }
+                    },
+                  
+                  ),
                 ],
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:chattingapp/Constants/device_size.dart';
 import 'package:chattingapp/Screens/authscreens/AuthScreen.dart';
+import 'package:chattingapp/controllers/user_controller.dart';
 import 'package:chattingapp/main.dart';
 import 'package:chattingapp/services/firebase/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,9 @@ class _SignUpPageState extends State<SignUpPage> {
   bool Loadscreen =false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController confirmpasswordController = TextEditingController();
+
 
   final _formkey= GlobalKey<FormState>();
   bool hiddensignuppassword = true;
@@ -60,6 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 20, 30, 10),
                   child: TextFormField(
+                    controller: nameController,
                     keyboardType: TextInputType.name,
                     validator: (val) {
                      if (val!.isEmpty) return "name cannot be empty";
@@ -195,40 +199,47 @@ class _SignUpPageState extends State<SignUpPage> {
                 Center(
                   child: SizedBox(
                     width: displayWidth(context) * 0.83,
-                    child: MaterialButton(
-                      height: displayHeight(context) * 0.055,
-                      onPressed: () async{
-                            setState(() {
-                              Loadscreen=true;
-                            });
-                            if(_formkey.currentState!.validate() ) {
-                              final dynamic response= await auth.signUp(email: emailController.text, password: passwordController.text);
-                              if(response.runtimeType!=UserCredential)
-                              {
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(response)));
-                                 
+                    child: Consumer<UserController>(
+                      builder: (context, userCtr, child) {
+                        return  MaterialButton(
+                        height: displayHeight(context) * 0.055,
+                        onPressed: () async{
+                              
+                              setState(() {
+                                Loadscreen=true;
+                              });
+                              if(_formkey.currentState!.validate() ) {
+                                final dynamic response= await auth.signUp(email: emailController.text, password: passwordController.text);
+                                if(response.runtimeType!=UserCredential)
+                                {
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(response)));
+                                   
+                                }
+                                else {
+                                
+                                  userCtr.createNewUser(email: emailController.text,name: nameController.text,uid: (response as UserCredential).user!.uid);
+                                  await setPref(true);
+                                   Navigator.pushReplacementNamed(context, '/HomePage');
+                                }
                               }
-                              else {
-                                await setPref(true);
-                                 Navigator.pushReplacementNamed(context, '/HomePage');
-                              }
-                            }
-                            setState(() {
-                              Loadscreen=false;
-                            });
-                             
-                      },
-                      color: Colors.blue[100],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Loadscreen==false ? const Text(
-                        "SignUp",
-                        style: TextStyle(
-                          fontSize: 15.5,
+                              setState(() {
+                                Loadscreen=false;
+                              });
+                               
+                        },
+                        color: Colors.blue[100],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
                         ),
-                      ): CircularProgressIndicator(),
-                    ),
+                        child: Loadscreen==false ? const Text(
+                          "SignUp",
+                          style: TextStyle(
+                            fontSize: 15.5,
+                          ),
+                        ): CircularProgressIndicator(),
+                      ) ;
+                      },
+                    )
                   ),
                 ),
               ],

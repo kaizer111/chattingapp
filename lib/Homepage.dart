@@ -10,11 +10,15 @@ import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
 import 'package:chattingapp/Screens/settings.dart';
+import 'package:chattingapp/controllers/user_controller.dart';
+import 'package:chattingapp/enum/enums.dart';
 import 'package:chattingapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'Screens/Status/Status.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   
@@ -138,7 +142,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
     ),
           ],
         ),
-        body: chats(),
+        body: Consumer<UserController>(
+          builder: (context, userctr, child) {
+            if(userctr.userStatus==UserStatus.NIL){
+              userctr.setUser(FirebaseAuth.instance.currentUser!.uid);
+            }
+            switch(userctr.userStatus){
+              
+              case UserStatus.DONE:
+               return chats();
+              case UserStatus.LOADING:
+                return Center(child: CircularProgressIndicator());
+              case UserStatus.NIL:
+                return CircularProgressIndicator();
+            }
+          },
+        ),
         //backgroundColor: Colors.blue.shade50,
         // body:  CustomScrollView(
         //   slivers: [
