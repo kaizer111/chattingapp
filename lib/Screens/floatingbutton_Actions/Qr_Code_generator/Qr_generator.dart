@@ -1,16 +1,19 @@
+import 'package:chattingapp/controllers/user_controller.dart';
 import 'package:chattingapp/model/User_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class QrGenerator extends StatelessWidget {
   //QrGenerator({super.key});
   
   final String myUserId = FirebaseAuth.instance.currentUser!.uid;
   
-  
   @override
   Widget build(BuildContext context) {
+    final userController = Provider.of<UserController>(context);
     return Scaffold(
       backgroundColor: Colors.blue[700],
       appBar: AppBar(
@@ -34,8 +37,8 @@ class QrGenerator extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            const Center(child: Text( 
-              "kakashi hatake",
+             Center(child: Text(userController.currentUser!=null? 
+              "${userController.currentUser!.name}":'anonymus',
               style: TextStyle(
                 fontSize: 25,
                 fontFamily: "fira",
