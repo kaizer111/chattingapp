@@ -2,24 +2,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomModel {
-final String user1id;
-final String user2id;
-final Timestamp lastchattime;
+final DateTime lastchattime;
 final String chatroomid;
+List<String> users;
 
-ChatRoomModel({required this.user1id,required this.user2id,required this.lastchattime,required this.chatroomid});
+ChatRoomModel({required this.lastchattime,required this.chatroomid,required this.users});
 
  Map<String,dynamic> toJson(){
     return {
-      'user1id':user1id,
-      'user2id':user2id,
-      'lastchattime':lastchattime,
+      'lastchattime':lastchattime.toString(),
       'chatroomid':chatroomid,
+       'users':users
       };
   }
 
   factory ChatRoomModel.fromJson(Map<String,dynamic> json){
-    return ChatRoomModel(user1id: json['user1id'], user2id: json['user2id'], lastchattime: json['lastchattime'], chatroomid: json['chatroomid']);
+    return ChatRoomModel( lastchattime: DateTime.parse(json['lastchattime']), chatroomid: json['chatroomid'],users: json['users']);
   }
 
 }
+
+

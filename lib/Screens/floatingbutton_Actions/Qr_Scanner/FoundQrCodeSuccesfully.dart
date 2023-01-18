@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/Homepage.dart';
 import 'package:chattingapp/model/User_model.dart';
 import 'package:chattingapp/services/api/utils.dart';
 import 'package:chattingapp/services/firebase/generateChatroom.dart';
@@ -162,6 +163,7 @@ class _FoundCodeScreenState extends State<FoundCodeScreen> {
                             fontSize: 19,)),
                 onPressed: () {
                 createChatroom(widget.value);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
               },),
             ),
           )

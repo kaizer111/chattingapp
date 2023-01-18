@@ -8,7 +8,7 @@ createChatroom(String otheruserid)async {
   String myuid= FirebaseAuth.instance.currentUser!.uid;
   String chatroomid = await generateChatRoomId(otheruserid);
   try {
-    ChatRoomModel chatRoomModel = ChatRoomModel(user1id: myuid, user2id:otheruserid, lastchattime: Timestamp.now(), chatroomid: chatroomid);
+    ChatRoomModel chatRoomModel = ChatRoomModel( lastchattime: DateTime.now(), chatroomid: chatroomid, users: [myuid,otheruserid]);
     await chatroomdb.doc(chatroomid).set(chatRoomModel.toJson());
   } catch (e) {
     print(e.toString());
@@ -26,5 +26,10 @@ generateChatRoomId (String otheruserid) async{
   else{
     return;
   }
+}
+
+ getChatRooms(){
+  String myuid=FirebaseAuth.instance.currentUser!.uid;
+  return chatroomdb.where('users',arrayContains: myuid).orderBy('lastchattime',descending: true).snapshots();
 }
 

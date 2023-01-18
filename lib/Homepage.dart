@@ -1,5 +1,4 @@
 import 'package:chattingapp/Constants/device_size.dart';
-import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/Help.dart';
 import 'package:chattingapp/Screens/Starred_messages.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
