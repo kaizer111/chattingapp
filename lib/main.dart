@@ -1,6 +1,7 @@
 import 'package:chattingapp/Screens/authscreens/AuthScreen.dart';
 import 'package:chattingapp/Screens/authscreens/loginpage.dart';
 import 'package:chattingapp/Screens/authscreens/signuppage.dart';
+import 'package:chattingapp/Screens/chats/chattingroom.dart';
 import 'package:chattingapp/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/HomePage' :(context) => HomePage(),
           '/AppScreen':(context) => AuthScreen(),
+          '/chattingroom':(context) => ChattingRoom(),
         },
       ),
     );
