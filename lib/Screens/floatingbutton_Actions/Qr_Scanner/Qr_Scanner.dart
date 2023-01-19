@@ -18,7 +18,7 @@ bool _screenOpened = false;
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Color.fromARGB(255, 145, 193, 232),
         title: const Text("Mobile Scanner"),
         actions: [
           IconButton(

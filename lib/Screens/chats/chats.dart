@@ -1,4 +1,5 @@
 import 'package:chattingapp/Constants/databseConstants.dart';
+import 'package:chattingapp/Screens/chats/chattingroom.dart';
 import 'package:chattingapp/model/User_model.dart';
 import 'package:chattingapp/model/chat_room_model.dart';
 import 'package:chattingapp/services/api/utils.dart';
@@ -20,23 +21,23 @@ class chats extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
-              print(snapshot.data.docs[0]['users']);
-              String otherId = myuid==snapshot.data.docs[0]['users'][0]?snapshot.data.docs[0]['users'][1]:snapshot.data.docs[0]['users'][0];
+          
+              String otherId = myuid==snapshot.data.docs[index]['users'][0]?snapshot.data.docs[0]['users'][1]:snapshot.data.docs[0]['users'][0];
               var k=snapshot.data.docs[index]['users'];
               return  FutureBuilder(
                 future: getUserDetails(otherId),
-                builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
-                  if(snapshot.hasData) {
+                builder: (BuildContext context, AsyncSnapshot<UserModel> usersnapshot) {
+                  if(usersnapshot.hasData) {
                     return ListTile(
                       onTap: () {
-                        Navigator.pushNamed(context, '/chattingroom');
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ChattingRoom(chatRoomId:snapshot.data.docs[index]['chatroomid'] , otherUser:usersnapshot.data! ),));
                       },
                 tileColor: Colors.white,
               visualDensity: VisualDensity(vertical: 2.5),
               leading: CircleAvatar(
                 child: Icon(Icons.account_box),   // instead of this icon this will be the persons profile picture
               ),
-              title: Text(snapshot.data!.name),
+              title: Text(usersnapshot.data!.name),
               subtitle: Text('Latest chats',style: TextStyle(fontFamily: "open"),),
               trailing: Text('11:11'), // this will show the current time
             );
