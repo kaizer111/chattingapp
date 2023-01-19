@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/HomePage' :(context) => HomePage(),
           '/AppScreen':(context) => AuthScreen(),
-          '/chattingroom':(context) => ChattingRoom(),
+         // '/chattingroom':(context) => ChattingRoom(),
         },
       ),
     );
