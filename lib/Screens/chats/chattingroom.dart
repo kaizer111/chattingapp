@@ -16,8 +16,9 @@ class ChattingRoom extends StatelessWidget {
 
    String myuid=FirebaseAuth.instance.currentUser!.uid;
    TextEditingController messageController = TextEditingController();
+   ScrollController _scrollController=ScrollController();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     final userController = Provider.of<UserController>(context);
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +85,8 @@ class ChattingRoom extends StatelessWidget {
           commentController: messageController,
           withBorder: true,
           textColor: Colors.black,
-          sendWidget: IconButton(onPressed: () async{
+          sendWidget: IconButton(onPressed: () async{ 
+            _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
             if(messageController.text.isNotEmpty) {
               print("mesage = ${messageController.text}");
               MessageModel messageModel = MessageModel(senderid: myuid, senttime: DateTime.now(), message: messageController.text, messageid: '');
@@ -98,6 +100,7 @@ class ChattingRoom extends StatelessWidget {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if(snapshot.hasData) {
                       return ListView.builder(
+                        controller: _scrollController,
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -106,13 +109,18 @@ class ChattingRoom extends StatelessWidget {
                           mainAxisAlignment: (snapshot.data.docs[index]['senderid']==myuid)?MainAxisAlignment.end:MainAxisAlignment.start,
                           children: [
                             Flexible(
-                              child: Container(
+                              child: Container(       
                               constraints: BoxConstraints(maxWidth: 200),
                                 decoration: BoxDecoration(
+                                gradient: LinearGradient(                     //for other user rgba(232,234,246,255)
+                                  colors: [
+                                    Color.fromARGB(255, 187, 193, 227),
+                                    Color.fromARGB(255, 187, 193, 227),
+                                ]),
                                 borderRadius: BorderRadius.circular(15),color: Colors.grey[200]
                                 ),
                                 padding: EdgeInsets.all(8),
-                                child: Text(snapshot.data.docs[index]['message']),
+                                child: Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
                               ),
                             ),
                           ],

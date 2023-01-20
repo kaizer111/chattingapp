@@ -21,7 +21,6 @@ class chats extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
-          
               String otherId = myuid==snapshot.data.docs[index]['users'][0]?snapshot.data.docs[0]['users'][1]:snapshot.data.docs[0]['users'][0];
               var k=snapshot.data.docs[index]['users'];
               return  FutureBuilder(
@@ -39,7 +38,7 @@ class chats extends StatelessWidget {
               ),
               title: Text(usersnapshot.data!.name),
               subtitle: Text('Latest chats',style: TextStyle(fontFamily: "open"),),
-              trailing: Text('11:11'), // this will show the current time
+              trailing: Text(snapshot.data.docs[index]['lastchattime']), // this will show the current time
             );
                   }
                   else {
