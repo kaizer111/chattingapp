@@ -6,6 +6,7 @@ import 'package:comment_box/comment/comment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:chattingapp/model/User_model.dart';
+import 'package:intl/intl.dart';
 
 
 class ChattingRoom extends StatelessWidget {
@@ -17,6 +18,7 @@ class ChattingRoom extends StatelessWidget {
    String myuid=FirebaseAuth.instance.currentUser!.uid;
    TextEditingController messageController = TextEditingController();
    ScrollController _scrollController=ScrollController();
+   
   @override
   Widget build(BuildContext context) { 
     final userController = Provider.of<UserController>(context);
@@ -112,15 +114,25 @@ class ChattingRoom extends StatelessWidget {
                               child: Container(       
                               constraints: BoxConstraints(maxWidth: 200),
                                 decoration: BoxDecoration(
-                                gradient: LinearGradient(                     //for other user rgba(232,234,246,255)
+                                gradient: (snapshot.data.docs[index]['senderid']==myuid)?LinearGradient(
                                   colors: [
                                     Color.fromARGB(255, 187, 193, 227),
                                     Color.fromARGB(255, 187, 193, 227),
+                                ]):LinearGradient(                     
+                                  colors: [
+                                    Color.fromARGB(255, 232, 234, 246),
+                                    Color.fromARGB(255, 232, 234, 246),
                                 ]),
                                 borderRadius: BorderRadius.circular(15),color: Colors.grey[200]
                                 ),
                                 padding: EdgeInsets.all(8),
-                                child: Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
+                                child: Column(
+                                  children: [
+                                    
+                                    Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
+                                    Text(DateTime.parse(snapshot.data.docs[index]['senttime']).minute.toString()),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

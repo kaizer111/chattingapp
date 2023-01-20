@@ -38,7 +38,7 @@ class chats extends StatelessWidget {
               ),
               title: Text(usersnapshot.data!.name),
               subtitle: Text('Latest chats',style: TextStyle(fontFamily: "open"),),
-              trailing: Text(snapshot.data.docs[index]['lastchattime']), // this will show the current time
+              trailing: Text(DateTime.parse(snapshot.data.docs[index]['lastchattime']).hour.toString()), // this will show the current time
             );
                   }
                   else {
