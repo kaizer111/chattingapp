@@ -1,18 +1,23 @@
 import 'package:chattingapp/Constants/device_size.dart';
-import 'package:chattingapp/Screens/ChatScreen.dart';
 import 'package:chattingapp/Screens/Help.dart';
 import 'package:chattingapp/Screens/Starred_messages.dart';
 import 'package:chattingapp/Screens/calls/calls.dart';
 import 'package:chattingapp/Screens/chats/chats.dart';
+import 'package:chattingapp/Screens/floatingbutton_Actions/Qr_Code_generator/Qr_generator.dart';
+import 'package:chattingapp/Screens/floatingbutton_Actions/Qr_Scanner/Qr_Scanner.dart';
 import 'package:chattingapp/Screens/groups/groups.dart';
 import 'package:chattingapp/Screens/newGroups.dart';
 import 'package:chattingapp/Screens/profile.dart';
-import 'package:chattingapp/Screens/searchBar.dart';
 import 'package:chattingapp/Screens/settings.dart';
+import 'package:chattingapp/controllers/user_controller.dart';
+import 'package:chattingapp/enum/enums.dart';
+import 'package:chattingapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'Screens/Status/Status.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   
@@ -29,7 +34,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   
   @override
   void initState() {
-    
+     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _animationController = AnimationController(
       vsync: this,
@@ -39,8 +44,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
     final curvedAnimation = CurvedAnimation(curve: Curves.easeInOut, parent: _animationController!);
     _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
     
-    super.initState();
-    super.initState();
+   
   }
 
   @override
@@ -48,22 +52,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          // leading: IconButton(
+          //   onPressed: () {
+          //   Navigator.pushReplacementNamed(context, '/AppScreen');
+          // }, icon: Icon(Icons.logout)),
           backgroundColor: Color.fromARGB(255, 145, 193, 232),
           title: const Text("Quickchat",style: TextStyle(fontFamily: "fira"),),
           actions:  [
-
-
-    PopupMenuButton(onSelected: (value){
+              PopupMenuButton(onSelected: (value){
             print(value);
             },
         color: Colors.blueGrey.shade100,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-
       itemBuilder: (BuildContext context) {
         return [
-
           PopupMenuItem(child: ListTile(
             leading: Text('Profile',
               style: TextStyle(
@@ -77,7 +81,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             },
           )
           ),
-          PopupMenuItem(child: ListTile(
+          PopupMenuItem(
+            child: ListTile(
             leading: Text('New groups',
               style: TextStyle(
                   fontSize: 16
@@ -101,7 +106,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => StarredMessage()));
             },
-          )
+          ),
           ),
           PopupMenuItem(child: ListTile(
             leading: Text('Help',
@@ -118,70 +123,82 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
           ),
 
           PopupMenuItem(child: ListTile(
-            leading: Text('Settings',
+            leading: Text('Logout',
               style: TextStyle(
                   fontSize: 16
               ),
             ),
-            onTap: () {
+            onTap: () async{
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingScreen(),));
+              await setPref(false);
+              Navigator.pushReplacementNamed(context, '/AppScreen');
             },
           )
           ),
 
         ];
       }
-    )
-
-    
-
-
+    ),
           ],
+        ),
+        body: Consumer<UserController>(
+          builder: (context, userctr, child) {
+            if(userctr.userStatus==UserStatus.NIL){
+              userctr.setUser(FirebaseAuth.instance.currentUser!.uid);
+            }
+            switch(userctr.userStatus){
+              
+              case UserStatus.DONE:
+               return chats();
+              case UserStatus.LOADING:
+                return Center(child: CircularProgressIndicator());
+              case UserStatus.NIL:
+                return CircularProgressIndicator();
+            }
+          },
         ),
         //backgroundColor: Colors.blue.shade50,
-        body:  CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: Colors.white,
-              pinned: true,
-            snap: false,
-            floating: true,
-            expandedHeight: 170.0,
-            flexibleSpace:  const FlexibleSpaceBar(
-              background: Status(),
-            ),
-             bottom:  TabBar
-             (
-              labelStyle: TextStyle(fontFamily: "fira"),
-              controller: _tabController,
-              indicatorColor: Colors.black,
-              labelColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: const UnderlineTabIndicator(
-              insets: EdgeInsets.only(bottom: 8),
-             ),
-              tabs: const [
-               Tab(text: 'Chats',),
-               Tab(text: 'Groups'),
-               Tab(text: 'calls'),
-            ],
-            ),
-            ),
-            SliverFillRemaining(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [
-                Center(child: chats()),
-                Center(child: groups()),
-                Center(child: calls()),
-              ],
-            ),
-          ),
-          ],
+        // body:  CustomScrollView(
+        //   slivers: [
+        //     SliverAppBar(
+        //       backgroundColor: Colors.white,
+        //       pinned: true,
+        //     snap: false,
+        //     floating: true,
+        //     expandedHeight: 170.0,
+        //     flexibleSpace:  const FlexibleSpaceBar(
+        //       background: Status(),
+        //     ),
+        //      bottom:  TabBar
+        //      (
+        //       labelStyle: TextStyle(fontFamily: "fira"),
+        //       controller: _tabController,
+        //       indicatorColor: Colors.black,
+        //       labelColor: Colors.black,
+        //       indicatorSize: TabBarIndicatorSize.label,
+        //       indicator: const UnderlineTabIndicator(
+        //       insets: EdgeInsets.only(bottom: 8),
+        //      ),
+        //       tabs: const [
+        //        Tab(text: 'Chats',),
+        //        Tab(text: 'Groups'),
+        //        Tab(text: 'calls'),
+        //     ],
+        //     ),
+        //     ),
+        //     SliverFillRemaining(
+        //     child: TabBarView(
+        //       controller: _tabController,
+        //       children: const [
+        //         Center(child: chats()),
+        //         Center(child: groups()),
+        //         Center(child: calls()),
+        //       ],
+        //     ),
+        //   ),
+        //   ],
           
-        ),
+        // ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton:  FloatingActionBubble(
         // Menu items
@@ -196,6 +213,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             titleStyle:TextStyle(fontSize: 16 , color: Colors.white),
             onPress: () {
               _animationController!.reverse();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => QrScanner(),));
             },
           ),
           // Floating action menu item
@@ -207,16 +225,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             titleStyle:TextStyle(fontSize: 16 , color: Colors.white),
             onPress: () {
               _animationController!.reverse();
-                QrImage(
-              data: 'This QR code has an embedded image as well',
-                version: QrVersions.auto,
-                size: 320,
-                gapless: false,
-                embeddedImage: AssetImage('assets/images/qrimage.jpg'),
-                embeddedImageStyle: QrEmbeddedImageStyle(
-                size: Size(80, 80),
-                  ),
-                );
+              Navigator.push(context, MaterialPageRoute(builder: (context) => QrGenerator(),));
 
             },
           ),
@@ -231,6 +240,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
         onPress: () => _animationController!.isCompleted
               ? _animationController!.reverse()
               : _animationController!.forward(),
+
         
         // Floating Action button Icon color
         iconColor: Colors.white,
