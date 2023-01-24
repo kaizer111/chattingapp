@@ -21,7 +21,7 @@ class chats extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
-              String otherId = myuid==snapshot.data.docs[index]['users'][0]?snapshot.data.docs[0]['users'][1]:snapshot.data.docs[0]['users'][0];
+              String otherId = myuid==snapshot.data.docs[index]['users'][0]?snapshot.data.docs[index]['users'][1]:snapshot.data.docs[index]['users'][0];
               var k=snapshot.data.docs[index]['users'];
               return  FutureBuilder(
                 future: getUserDetails(otherId),
