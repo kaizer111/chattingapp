@@ -6,7 +6,7 @@ import 'package:comment_box/comment/comment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:chattingapp/model/User_model.dart';
-import 'package:intl/intl.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 
 class ChattingRoom extends StatelessWidget {
@@ -83,6 +83,7 @@ class ChattingRoom extends StatelessWidget {
         ],
       ),
       body: CommentBox(
+          userImage: AssetImage('assets/images/heirs.jpg'),
           backgroundColor: Colors.white,
           commentController: messageController,
           withBorder: true,
@@ -105,6 +106,9 @@ class ChattingRoom extends StatelessWidget {
                         controller: _scrollController,
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, index) {
+                   
+                     var chattingtime = DateTime.parse(snapshot.data.docs[index]['senttime']);
+                        print(chattingtime.day);
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -130,12 +134,13 @@ class ChattingRoom extends StatelessWidget {
                                   children: [
                                     
                                     Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
-                                    Text(DateTime.parse(snapshot.data.docs[index]['senttime']).minute.toString()),
+                                    Text(timeago.format(chattingtime,locale: 'en_short')),
+                                    
                                   ],
                                 ),
                               ),
                             ),
-                          ],
+                          ],                           
                         ),
                       );
                   },);

@@ -6,6 +6,7 @@ import 'package:chattingapp/services/api/utils.dart';
 import 'package:chattingapp/services/firebase/generateChatroom.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/material.dart';
 
 class chats extends StatelessWidget {
@@ -21,6 +22,7 @@ class chats extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
+              var listilechattime = DateTime.parse(snapshot.data.docs[index]['lastchattime']);
               String otherId = myuid==snapshot.data.docs[index]['users'][0]?snapshot.data.docs[index]['users'][1]:snapshot.data.docs[index]['users'][0];
               var k=snapshot.data.docs[index]['users'];
               return  FutureBuilder(
@@ -38,7 +40,7 @@ class chats extends StatelessWidget {
               ),
               title: Text(usersnapshot.data!.name),
               subtitle: Text('Latest chats',style: TextStyle(fontFamily: "open"),),
-              trailing: Text(DateTime.parse(snapshot.data.docs[index]['lastchattime']).hour.toString()), // this will show the current time
+              trailing: Text(timeago.format(listilechattime)), // this will show the current time
             );
                   }
                   else {
