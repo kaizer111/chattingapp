@@ -9,16 +9,33 @@ import 'package:chattingapp/model/User_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 
-class ChattingRoom extends StatelessWidget {
+class ChattingRoom extends StatefulWidget {
   String chatRoomId;
   UserModel otherUser;
 
    ChattingRoom({super.key,required this.chatRoomId,required this.otherUser});
 
+  @override
+  State<ChattingRoom> createState() => _ChattingRoomState();
+}
+
+class _ChattingRoomState extends State<ChattingRoom> {
    String myuid=FirebaseAuth.instance.currentUser!.uid;
+
    TextEditingController messageController = TextEditingController();
+
    ScrollController _scrollController=ScrollController();
-   
+   bool _needsScroll=true;
+
+
+     _scrollToEnd() async {
+    if (_needsScroll) {
+      _needsScroll = true;
+      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+          duration: Duration(microseconds: 1 ), curve: Curves.easeOut);
+    }
+  }
+
   @override
   Widget build(BuildContext context) { 
     final userController = Provider.of<UserController>(context);
@@ -89,19 +106,21 @@ class ChattingRoom extends StatelessWidget {
           withBorder: true,
           textColor: Colors.black,
           sendWidget: IconButton(onPressed: () async{ 
-            _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+          //  _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 10), curve: Curves.easeOut);
             if(messageController.text.isNotEmpty) {
               print("mesage = ${messageController.text}");
               MessageModel messageModel = MessageModel(senderid: myuid, senttime: DateTime.now(), message: messageController.text, messageid: '');
-              var msgres= await chatroomdb.doc(chatRoomId).collection('messages').add(messageModel.toJson());
-              await chatroomdb.doc(chatRoomId).collection("messages").doc(msgres.id).update({'messageid':msgres.id});
+              var msgres= await chatroomdb.doc(widget.chatRoomId).collection('messages').add(messageModel.toJson());
+              await chatroomdb.doc(widget.chatRoomId).collection("messages").doc(msgres.id).update({'messageid':msgres.id});
               messageController.clear();
             }
+             _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 10), curve: Curves.easeOut);
           }, icon: Icon(Icons.send)),
           child: StreamBuilder(
-                stream: chatroomdb.doc(chatRoomId).collection('messages').orderBy('senttime',descending: false).snapshots(),
+                stream: chatroomdb.doc(widget.chatRoomId).collection('messages').orderBy('senttime',descending: false).snapshots(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if(snapshot.hasData) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
                       return ListView.builder(
                         controller: _scrollController,
                     itemCount: snapshot.data.docs.length,
@@ -132,10 +151,8 @@ class ChattingRoom extends StatelessWidget {
                                 padding: EdgeInsets.all(8),
                                 child: Column(
                                   children: [
-                                    
                                     Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
-                                    Text(timeago.format(chattingtime,locale: 'en_short')),
-                                    
+                                    Text(timeago.format(chattingtime,locale: 'en_short',),style: TextStyle(fontSize: 10),),
                                   ],
                                 ),
                               ),
