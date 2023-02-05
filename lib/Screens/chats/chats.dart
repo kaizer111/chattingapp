@@ -40,7 +40,7 @@ class chats extends StatelessWidget {
               ),
               title: Text(usersnapshot.data!.name),
               subtitle: Text('Latest chats',style: TextStyle(fontFamily: "open"),),
-              trailing: Text(timeago.format(listilechattime)), // this will show the current time
+              trailing: Text(timeago.format(listilechattime,allowFromNow: true)), // this will show the current time
             );
                   }
                   else {
