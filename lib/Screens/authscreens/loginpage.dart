@@ -63,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 40, 30, 10),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: emailController,
                     validator: (val) {
                        if (val!.isEmpty) return "email cannot be empty";
@@ -89,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 25, 30, 10),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     obscureText: ishiddenPassword,
                     controller: passwordController,
                     validator: (val) {
