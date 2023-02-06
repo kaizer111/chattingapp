@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
-class QrGenerator extends StatelessWidget {
+class QrGenerator extends StatefulWidget {
+  @override
+  State<QrGenerator> createState() => _QrGeneratorState();
+}
+
+class _QrGeneratorState extends State<QrGenerator> {
   //QrGenerator({super.key});
-  
   final String myUserId = FirebaseAuth.instance.currentUser!.uid;
-  
+
   @override
   Widget build(BuildContext context) {
     final userController = Provider.of<UserController>(context);
@@ -70,7 +75,7 @@ class QrGenerator extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             child: const Icon(Icons.share),
             onPressed: () {
-            
+             Share.share(' first try');
           },)
         ],
       ),
