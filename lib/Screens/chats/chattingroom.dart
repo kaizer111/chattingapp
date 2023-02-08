@@ -1,6 +1,7 @@
 import 'package:chattingapp/Constants/databseConstants.dart';
 import 'package:chattingapp/controllers/user_controller.dart';
 import 'package:chattingapp/model/message_model.dart';
+import 'package:chattingapp/services/api/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,8 +43,7 @@ class _ChattingRoomState extends State<ChattingRoom> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 145, 193, 232),
-        title: Text(userController.currentUser!=null? 
-              "${userController.currentUser!.name}":'anonymus'),
+        title: Text(widget.otherUser.name),
         actions: [
           PopupMenuButton(onSelected: (value){
             print(value);
