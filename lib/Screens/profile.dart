@@ -8,6 +8,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
         title: Text("Profile",
             style: TextStyle(
@@ -29,7 +30,8 @@ class Profile extends StatelessWidget {
                 SizedBox(
                   height:displayHeight(context)*0.17,
                   width:displayWidth(context)*0.31,
-                  child: CircleAvatar(backgroundColor: Colors.green,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/jimin.jpg'),
                     radius: 50,
                   ),
                 ),
@@ -81,11 +83,11 @@ class Profile extends StatelessWidget {
                   child: Expanded(
                     child: ListTile(
                       leading: Container(
-                        height: double.infinity,
-                        width: 300,
+                       height: double.infinity,
+                        width: 500,
                         child: Column(
                           children: [
-                                          
+
                             Row(
                               children: [
                                 Icon(Icons.cake,size: 34,color: Colors.black,),
@@ -103,7 +105,7 @@ class Profile extends StatelessWidget {
                                     SizedBox(
                                       height: displayHeight(context)*0.005,
                                     ),
-                                          
+
                                     Text('13/10/1995',
                                       style: TextStyle(fontSize: 20),
                                     ),
@@ -111,15 +113,15 @@ class Profile extends StatelessWidget {
                                 ),
                               ],
                             ),
-                                          
-                                          
+
+
                             SizedBox(
                               height: displayHeight(context)*0.005,
                             ),
-                                          
+
                             const Divider(),
-                                          
-                                          
+
+
                             Row(
                               children: [
                                 Icon(Icons.account_circle,size: 34,color: Colors.black,),
@@ -137,7 +139,7 @@ class Profile extends StatelessWidget {
                                     SizedBox(
                                       height: displayHeight(context)*0.005,
                                     ),
-                                          
+
                                     Text('Male',
                                       style: TextStyle(fontSize: 20),
                                     ),
@@ -145,14 +147,14 @@ class Profile extends StatelessWidget {
                                 ),
                               ],
                             ),
-                                          
-                                          
+
+
                             SizedBox(
                               height: displayHeight(context)*0.005,
                             ),
-                                          
+
                             const Divider(),
-                                          
+
                             Row(
                               children: [
                                 Icon(Icons.email,size: 34,color: Colors.black,),
@@ -170,7 +172,7 @@ class Profile extends StatelessWidget {
                                     SizedBox(
                                       height: displayHeight(context)*0.005,
                                     ),
-                                          
+
                                     Text('mochi1310@gmail.com',
                                       style: TextStyle(fontSize: 15,
                                       ),
@@ -179,7 +181,7 @@ class Profile extends StatelessWidget {
                                 ),
                               ],
                             ),
-                                          
+
                             SizedBox(
                               height: displayHeight(context)*0.017,
                             ),
