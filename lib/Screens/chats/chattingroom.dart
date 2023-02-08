@@ -32,7 +32,7 @@ class _ChattingRoomState extends State<ChattingRoom> {
     if (_needsScroll) {
       _needsScroll = true;
       _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-          duration: Duration(microseconds: 1 ), curve: Curves.easeOut);
+          duration: Duration(microseconds: 100 ), curve: Curves.easeOut);
     }
   }
 
@@ -105,8 +105,9 @@ class _ChattingRoomState extends State<ChattingRoom> {
           commentController: messageController,
           withBorder: true,
           textColor: Colors.black,
-          sendWidget: IconButton(onPressed: () async{ 
-          //  _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 10), curve: Curves.easeOut);
+          sendWidget: IconButton(
+            onPressed: () async{ 
+              // _scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 10), curve: Curves.easeOut);
             if(messageController.text.isNotEmpty) {
               print("mesage = ${messageController.text}");
               MessageModel messageModel = MessageModel(senderid: myuid, senttime: DateTime.now(), message: messageController.text, messageid: '');
@@ -122,38 +123,46 @@ class _ChattingRoomState extends State<ChattingRoom> {
                   if(snapshot.hasData) {
                     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
                       return ListView.builder(
+                        shrinkWrap: true,
                         controller: _scrollController,
-                    itemCount: snapshot.data.docs.length,
-                    itemBuilder: (context, index) {
+                        itemCount: snapshot.data.docs.length,
+                        itemBuilder: (context, index) {
                    
-                     var chattingtime = DateTime.parse(snapshot.data.docs[index]['senttime']);
-                        print(chattingtime.day);
-                      return Padding(
+                         var chattingtime = DateTime.parse(snapshot.data.docs[index]['senttime']);
+                     //   print(chattingtime.day);
+                        return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: (snapshot.data.docs[index]['senderid']==myuid)?MainAxisAlignment.end:MainAxisAlignment.start,
                           children: [
                             Flexible(
-                              child: Container(       
-                              constraints: BoxConstraints(maxWidth: 200),
-                                decoration: BoxDecoration(
-                                gradient: (snapshot.data.docs[index]['senderid']==myuid)?LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(255, 187, 193, 227),
-                                    Color.fromARGB(255, 187, 193, 227),
-                                ]):LinearGradient(                     
-                                  colors: [
-                                    Color.fromARGB(255, 232, 234, 246),
-                                    Color.fromARGB(255, 232, 234, 246),
-                                ]),
-                                borderRadius: BorderRadius.circular(15),color: Colors.grey[200]
-                                ),
-                                padding: EdgeInsets.all(8),
-                                child: Column(
-                                  children: [
-                                    Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
-                                    Text(timeago.format(chattingtime,locale: 'en_short',),style: TextStyle(fontSize: 10),),
-                                  ],
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                child: Container(       
+                                constraints: BoxConstraints(maxWidth: 200),
+                                  decoration: BoxDecoration(
+                                  gradient: (snapshot.data.docs[index]['senderid']==myuid)?LinearGradient(
+                                    colors: [
+                                      Color.fromARGB(255, 187, 193, 227),
+                                      Color.fromARGB(255, 187, 193, 227),
+                                  ]):LinearGradient(                     
+                                    colors: [
+                                      Color.fromARGB(255, 232, 234, 246),
+                                      Color.fromARGB(255, 232, 234, 246),
+                                  ]),
+                                  borderRadius: BorderRadius.circular(15),color: Colors.grey[200]
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(8, 4, 8, 0),
+                                        child: Text(snapshot.data.docs[index]['message'],style: TextStyle(fontFamily: 'fira')),
+                                      ),
+                                      Text(timeago.format(chattingtime,locale: 'en_short',),style: TextStyle(fontSize: 10),),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

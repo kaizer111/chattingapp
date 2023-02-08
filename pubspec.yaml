@@ -53,6 +53,7 @@ dev_dependencies:
   confetti: ^0.7.0
   comment_box: ^0.0.18
   timeago_flutter: ^1.2.0
+  share_plus: ^6.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
