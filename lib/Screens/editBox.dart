@@ -136,7 +136,7 @@ class _EditBoxState extends State<EditBox> {
                         height: 20,
                       ),
 
-                      Text('Phone',
+                      Text('Email',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25
@@ -146,7 +146,7 @@ class _EditBoxState extends State<EditBox> {
 
                         decoration: InputDecoration(
 
-                          hintText: "Your Phone No....",
+                          hintText: "Your Email id....",
 
                         ),
                       ),
