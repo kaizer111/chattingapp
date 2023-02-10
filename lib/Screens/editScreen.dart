@@ -1,3 +1,4 @@
+import 'package:chattingapp/Screens/editBox.dart';
 import 'package:flutter/material.dart';
 
 class EditScreen extends StatelessWidget {
@@ -7,10 +8,7 @@ class EditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue.shade100,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Edit Screen'),
-      ),
+      body: EditBox(),
     );
   }
 }
