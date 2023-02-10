@@ -1,5 +1,6 @@
 
 import 'package:chattingapp/Constants/device_size.dart';
+import 'package:chattingapp/Screens/editScreen.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -8,16 +9,18 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade100,
       appBar: AppBar(
         title: Text("Profile",
             style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
               fontSize: 25,
               fontWeight: FontWeight.bold
             )
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 145, 193, 232),
+        //backgroundColor: Color.fromARGB(255, 145, 193, 232),
+        backgroundColor: Colors.blue,
       ),
 
       body: SingleChildScrollView(
@@ -29,7 +32,8 @@ class Profile extends StatelessWidget {
                 SizedBox(
                   height:displayHeight(context)*0.17,
                   width:displayWidth(context)*0.31,
-                  child: CircleAvatar(backgroundColor: Colors.green,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/jimin.jpg'),
                     radius: 50,
                   ),
                 ),
@@ -57,13 +61,17 @@ class Profile extends StatelessWidget {
                   height: displayHeight(context)*0.06,
                   width: displayWidth(context)*0.5,
                   child: MaterialButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pop(context);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => EditScreen()));
+                    },
                     child: Text('Edit Profile',
                       style: TextStyle(fontSize: 19,
                         color: Colors.white
                       ),
                     ),
-                    color: Colors.blue[700],
+                    color: Colors.black,
                     shape: StadiumBorder(),
                   ),
                 ),
@@ -73,136 +81,47 @@ class Profile extends StatelessWidget {
                 ),
                 const Divider(),
 
-                SizedBox(
-                  height: displayHeight(context)*0.017,
+                ListTile(
+                  leading: Icon(Icons.cake,size: 37,),
+                  title: Text('Birthday',
+                    style: TextStyle(color: Colors.black,
+                        fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text('13/08/1994',
+                    style: TextStyle(color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
                 ),
 
-                SizedBox(
-                  child: Expanded(
-                    child: ListTile(
-                      leading: Container(
-                        height: double.infinity,
-                        width: 300,
-                        child: Column(
-                          children: [
-                                          
-                            Row(
-                              children: [
-                                Icon(Icons.cake,size: 34,color: Colors.black,),
-                                SizedBox(
-                                  width: displayWidth(context)*0.03,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Date Of Birth',
-                                      style: TextStyle(fontSize: 20,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: displayHeight(context)*0.005,
-                                    ),
-                                          
-                                    Text('13/10/1995',
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                                          
-                                          
-                            SizedBox(
-                              height: displayHeight(context)*0.005,
-                            ),
-                                          
-                            const Divider(),
-                                          
-                                          
-                            Row(
-                              children: [
-                                Icon(Icons.account_circle,size: 34,color: Colors.black,),
-                                SizedBox(
-                                  width: displayWidth(context)*0.03,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Gender',
-                                      style: TextStyle(fontSize: 20,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: displayHeight(context)*0.005,
-                                    ),
-                                          
-                                    Text('Male',
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                                          
-                                          
-                            SizedBox(
-                              height: displayHeight(context)*0.005,
-                            ),
-                                          
-                            const Divider(),
-                                          
-                            Row(
-                              children: [
-                                Icon(Icons.email,size: 34,color: Colors.black,),
-                                SizedBox(
-                                  width: displayWidth(context)*0.03,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Email',
-                                      style: TextStyle(fontSize: 20,
-                                        fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: displayHeight(context)*0.005,
-                                    ),
-                                          
-                                    Text('mochi1310@gmail.com',
-                                      style: TextStyle(fontSize: 15,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                                          
-                            SizedBox(
-                              height: displayHeight(context)*0.017,
-                            ),
-                            SizedBox(
-                              height: displayHeight(context)*0.017,
-                            ),
-                            const Divider(),
-                            Row(
-                              children: [
-                                Icon(Icons.logout_outlined,size: 34,color: Colors.black,),
-                                SizedBox(
-                                  width: displayWidth(context)*0.03,
-                                ),
-                                Text('Log Out',
-                                  style: TextStyle(fontSize: 20,
-                                      fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                ListTile(
+                  leading: Icon(Icons.boy,size: 48,),
+                  title: Text('Gender',
+                    style: TextStyle(color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text('Male',
+                    style: TextStyle(color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+
+                ListTile(
+                  leading: Icon(Icons.phone,size: 39,),
+                  title: Text('Phone',
+                    style: TextStyle(color: Colors.black,
+                        fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text('+34 8765',
+                    style: TextStyle(color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
