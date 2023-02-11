@@ -113,12 +113,12 @@ class Profile extends StatelessWidget {
 
                 ListTile(
                   leading: Icon(Icons.phone,size: 39,),
-                  title: Text('Phone',
+                  title: Text('Email',
                     style: TextStyle(color: Colors.black,
                         fontSize: 16,
                     ),
                   ),
-                  subtitle: Text('+34 8765',
+                  subtitle: Text('abc123@gmail.com',
                     style: TextStyle(color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.bold
